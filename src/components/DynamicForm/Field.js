@@ -13,7 +13,7 @@ const Field = ({ field, fieldChanged, type, value }) => {
         value={value}
         onChange={(e) => {
           // Notify the main state list of the new value
-          fieldChanged(field._uid, e.target.value);
+          fieldChanged(field._uid, e.target.value, field.label);
         }}
       />
     </div>

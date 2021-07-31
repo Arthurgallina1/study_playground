@@ -15,7 +15,7 @@ const Options = ({ field, fieldChanged, value }) => {
                 value={option.value}
                 checked={value === option.value}
                 onChange={(e) => {
-                  fieldChanged(field._uid, e.target.value);
+                  fieldChanged(field._uid, e.target.value, option.label);
                 }}
               />
               {option.label}

@@ -46,10 +46,10 @@ const Form = ({ formData }) => {
   }, [formData]);
 
   // callback provided to components to update the main list of form values
-  const fieldChanged = (fieldId, value) => {
+  const fieldChanged = (fieldId, value, label) => {
     // use a callback to find the field in the value list and update it
     setValues((currentValues) => {
-      currentValues[fieldId] = value;
+      currentValues[fieldId] = { value, label };
       return currentValues;
     });
 
@@ -112,7 +112,7 @@ const Form = ({ formData }) => {
                   key={field._uid}
                   field={field}
                   fieldChanged={fieldChanged}
-                  value={values[field._uid]}
+                  value={values[field._uid]?.value}
                 />
               );
             default:
@@ -121,7 +121,7 @@ const Form = ({ formData }) => {
                   key={field._uid}
                   field={field}
                   fieldChanged={fieldChanged}
-                  value={values[field._uid]}
+                  value={values[field._uid]?.value}
                 />
               );
           }
@@ -129,7 +129,13 @@ const Form = ({ formData }) => {
       {/* {page > 0 && <button onClick={prevPage}>Back</button>}&nbsp;
       {page < formData.length - 1 && <button onClick={nextPage}>Next</button>} */}
       <hr />
-      <Button onClick={() => console.log(values)}>Dump form data</Button>
+      <Button onClick={() => {
+          Object.values(values).map((option) => {
+              if(option) {
+                console.log(option)
+              }
+          })
+      }}>Dump form data</Button>
     </form>
   );
 };
