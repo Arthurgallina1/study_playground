@@ -1,0 +1,50 @@
+import React, { useState, useEffect} from 'react'
+import { useSpring, animated, useTransition } from 'react-spring'
+
+export default function SpringAnimation() {
+
+    const props = useSpring({ to: { opacity: 1 }, from: { opacity: 0 }, loop: true,  })
+    const [move, setMove] = React.useState(false)
+
+    console.log('oi', props)
+
+    return (
+        <Toggle />
+        // <animated.div style={props}>
+        //     <h3>{move && 'driver'}</h3>
+        //     <button onClick={() => setMove((oldMove) => !oldMove)}>olar</button>
+        // </animated.div>
+    )
+}
+
+function Toggle() {
+    const [toggle, set] = useState(false)
+    const transitions = useTransition(toggle, {
+      from: { position: 'absolute', opacity: 0 },
+      enter: { opacity: 1 },
+      leave: { opacity: 0 },
+      reverse: toggle,
+      delay: 200,
+    //   config: config.molasses,
+      onRest: () => set(!toggle),
+    })
+    return transitions(({ opacity }, item) =>
+      item ? (
+        <animated.div
+          style={{
+            position: 'absolute',
+            opacity: opacity.to({ range: [0.0, 1.0], output: [0, 1] }),
+          }}>
+          😄
+        </animated.div>
+      ) : (
+        <animated.div
+          style={{
+            position: 'absolute',
+            opacity: opacity.to({ range: [1.0, 0.0], output: [1, 0] }),
+          }}>
+          🤪
+        </animated.div>
+      )
+    )
+  }
