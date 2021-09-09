@@ -1,5 +1,6 @@
 import React from 'react'
 import Form from './form'
+import { flattenDeep } from 'lodash'
 
 export const formData = [
   {
@@ -175,6 +176,88 @@ export const formData = [
     ]
   }
 ]
+
+const mock2 = [
+  {
+    type: 'radio',
+    label: 'Production Needs',
+    name: 'productionNeeds',
+    order: 0,
+    required: true,
+    options: [
+      {
+        id: 22,
+        label: 'Print & Mail',
+        dynamicOptions: [
+          {
+            type: 'radio',
+            label: 'Quantity',
+            name: 'quantity',
+            order: 1,
+            required: true,
+            options: [
+              {
+                id: 24,
+                label: '100',
+                dynamicOptions: [],
+                value: '100',
+                order: 0,
+                metadata: {},
+              },
+              {
+                id: 25,
+                label: '250',
+                dynamicOptions: [],
+                value: '250',
+                order: 1,
+                metadata: {},
+              },
+            ],
+          },
+          {
+            type: 'radio',
+            label: 'Material',
+            name: 'material',
+            order: 2,
+            required: true,
+            options: [
+              {
+                id: 26,
+                label: 'Glossy',
+                dynamicOptions: [],
+                value: 'glossy',
+                order: 0,
+                metadata: {},
+              },
+              {
+                id: 27,
+                label: 'Matte',
+                dynamicOptions: [],
+                value: 'matte',
+                order: 1,
+                metadata: {},
+              },
+            ],
+          },
+        ],
+        value: 'Print & Mail',
+        order: 0,
+        metadata: {},
+      },
+      {
+        id: 23,
+        label: 'Design Only',
+        dynamicOptions: [],
+        value: 'Design Only',
+        order: 1,
+        metadata: {},
+      },
+    ],
+  },
+]
+
+
+console.log(flattenDeep(mock2))
 
 export default function Index() {
   const [saveState, setSaveState] = React.useState({})

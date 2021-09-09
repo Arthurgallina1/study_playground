@@ -30,6 +30,7 @@ const Form = ({ formData, saveState, setSaveState }) => {
     const upcomingPageData = formData
     setCurrentPageData(upcomingPageData)
     setValues((currentValues) => {
+      console.log('formData mudou', currentValues)
       const newValues = upcomingPageData.fields.reduce((obj, field) => {
         if (field.component === 'field_group') {
           for (const subField of field.fields) {
@@ -48,6 +49,7 @@ const Form = ({ formData, saveState, setSaveState }) => {
 
   // callback provided to components to update the main list of form values
   const fieldChanged = (fieldId, value, label) => {
+    console.log('vvv',value)
     // use a callback to find the field in the value list and update it
     setValues((currentValues) => {
       currentValues[fieldId] = { value, label }
@@ -59,6 +61,9 @@ const Form = ({ formData, saveState, setSaveState }) => {
       return Object.assign({}, currentPageData)
     })
   }
+  useEffect(() => {
+    console.log('values', values)
+  }, [values])
 
   //   const navigatePages = (direction) => () => {
   //     const findNextPage = (page) => {

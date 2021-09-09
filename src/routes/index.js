@@ -9,6 +9,7 @@ import {
 import { useSpring, animated, useTransition } from 'react-spring'
 
 import DynamicForm from '../components/DynamicForm'
+import Home from "../pages/Home";
 
 const animation = {
     from: {
@@ -37,14 +38,12 @@ export default function App() {
 
   return transitions((props, item) => (
    <animated.div style={{...props, width: '100%'}}>
-      {/* A <Switch> looks through its children <Route>s and
-          renders the first one that matches the current URL. */}
       <Switch location={item}>
         <Route path="/about">
           <About />
         </Route>
         <Route path="/users">
-          <Users />
+          <Home />
         </Route>
         <Route path="/dynamicform">
           <DynamicForm />
@@ -61,8 +60,4 @@ export default function App() {
 
 function About() {
   return <div style={{ background: 'yellow', padding: '10px', height: '90vh'}}>About</div>;
-}
-
-function Users() {
-  return <div style={{ background: 'red', padding: '10px', height: '90vh'}}>Users</div>;
 }
