@@ -23,7 +23,15 @@ export default function useQueryParams() {
     //     console.log('key', key[0])
     //     console.log('value', key[1])
     // }
-    window.location.search = urlSearchParams
+    // window.location.search = urlSearchParams //this triggers a refresh
+    const { pathname, origin } = window.location 
+    const currentPath = `${origin}${pathname}`
+    const newPath = `${currentPath}?${urlSearchParams}`
+    // console.log('pathname', pathname)
+    // console.log('origin', origin)
+    // console.log('currentPath', currentPath)
+    // console.log('newPath', newPath)
+    window.history.replaceState({}, '', `${newPath}`)
     // return urlSearchParams
   }
 

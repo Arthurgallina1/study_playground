@@ -10,7 +10,7 @@ export default function Home() {
   useEffect(() => {
     const params = getParams()
     console.log(params)
-  }, [])
+  }, [getParams])
 
   return (
     <div style={{ background: 'red', padding: '10px', height: '90vh' }}>
