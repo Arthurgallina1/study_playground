@@ -23,8 +23,8 @@ export default function Home() {
       <Button onClick={() => history.replace('/users?id=20&user=bad')}>
         Id 20
       </Button>
-      <Button variant="solid" onClick={() => history.push('/users?id=25')}>
-        Id 25
+      <Button variant="solid" onClick={() => history.push('/users/pop?id=30')}>
+        /pop
       </Button>
       <Button
         variant="solid"
