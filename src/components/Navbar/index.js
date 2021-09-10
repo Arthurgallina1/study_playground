@@ -32,18 +32,16 @@ import {
   PopoverContent,
   useColorModeValue,
   useBreakpointValue,
-  useDisclosure,
-} from '@chakra-ui/react';
+  useDisclosure
+} from '@chakra-ui/react'
 import {
   HamburgerIcon,
   CloseIcon,
   ChevronDownIcon,
-  ChevronRightIcon,
-} from '@chakra-ui/icons';
-import {
-    Link as LinkRD,
-  } from "react-router-dom";
-  
+  ChevronRightIcon
+} from '@chakra-ui/icons'
+import { Link as LinkRD } from 'react-router-dom'
+
 const NAV_ITEMS = [
   // {
   //   label: 'Home',
@@ -77,24 +75,24 @@ const NAV_ITEMS = [
   // },
   {
     label: 'Home',
-    href: '/',
+    href: '/'
   },
   {
     label: 'About',
-    href: '/about',
+    href: '/about'
   },
   {
     label: 'Users',
-    href: '/users',
+    href: '/users'
   },
   {
     label: 'Hire Designers',
-    href: '#',
-  },
-];
+    href: '#'
+  }
+]
 
 export default function WithSubnavigation() {
-  const { isOpen, onToggle } = useDisclosure();
+  const { isOpen, onToggle } = useDisclosure()
 
   return (
     <Box>
@@ -107,11 +105,13 @@ export default function WithSubnavigation() {
         borderBottom={1}
         borderStyle={'solid'}
         borderColor={useColorModeValue('gray.200', 'gray.900')}
-        align={'center'}>
+        align={'center'}
+      >
         <Flex
           flex={{ base: 1, md: 'auto' }}
           ml={{ base: -2 }}
-          display={{ base: 'flex', md: 'none' }}>
+          display={{ base: 'flex', md: 'none' }}
+        >
           <IconButton
             onClick={onToggle}
             icon={
@@ -125,7 +125,8 @@ export default function WithSubnavigation() {
           <Text
             textAlign={useBreakpointValue({ base: 'center', md: 'left' })}
             fontFamily={'heading'}
-            color={useColorModeValue('gray.800', 'white')}>
+            color={useColorModeValue('gray.800', 'white')}
+          >
             Logo
           </Text>
 
@@ -138,13 +139,15 @@ export default function WithSubnavigation() {
           flex={{ base: 1, md: 0 }}
           justify={'flex-end'}
           direction={'row'}
-          spacing={6}>
+          spacing={6}
+        >
           <Button
             as={'a'}
             fontSize={'sm'}
             fontWeight={400}
             variant={'link'}
-            href={'#'}>
+            href={'#'}
+          >
             Sign In
           </Button>
           <Button
@@ -155,8 +158,9 @@ export default function WithSubnavigation() {
             bg={'pink.400'}
             href={'#'}
             _hover={{
-              bg: 'pink.300',
-            }}>
+              bg: 'pink.300'
+            }}
+          >
             Sign Up
           </Button>
         </Stack>
@@ -166,25 +170,25 @@ export default function WithSubnavigation() {
         <MobileNav />
       </Collapse>
     </Box>
-  );
+  )
 }
 
 const DesktopNav = () => {
-  const linkColor = useColorModeValue('gray.600', 'gray.200');
-  const linkHoverColor = useColorModeValue('gray.800', 'white');
-  const popoverContentBgColor = useColorModeValue('white', 'gray.800');
+  const linkColor = useColorModeValue('gray.600', 'gray.200')
+  const linkHoverColor = useColorModeValue('gray.800', 'white')
+  const popoverContentBgColor = useColorModeValue('white', 'gray.800')
 
   return (
     <Stack direction={'row'} spacing={4}>
-       <li>
-            <LinkRD to="/users">Home</LinkRD>
-          </li>
-          <li>
-            <LinkRD to="/dynamicform">Dynamic Form</LinkRD>
-          </li>
-          <li>
-            <LinkRD to="/about">About</LinkRD>
-          </li>
+      <li>
+        <LinkRD to="/users">Home</LinkRD>
+      </li>
+      <li>
+        <LinkRD to="/dynamicform">Dynamic Form</LinkRD>
+      </li>
+      <li>
+        <LinkRD to="/about">About</LinkRD>
+      </li>
       {/* {NAV_ITEMS.map((navItem) => (
         <Box key={navItem.label}>
           <Popover trigger={'hover'} placement={'bottom-start'}>
@@ -222,8 +226,8 @@ const DesktopNav = () => {
         </Box>
       ))} */}
     </Stack>
-  );
-};
+  )
+}
 
 const DesktopSubNav = ({ label, href, subLabel }) => {
   return (
@@ -233,13 +237,15 @@ const DesktopSubNav = ({ label, href, subLabel }) => {
       display={'block'}
       p={2}
       rounded={'md'}
-      _hover={{ bg: useColorModeValue('pink.50', 'gray.900') }}>
+      _hover={{ bg: useColorModeValue('pink.50', 'gray.900') }}
+    >
       <Stack direction={'row'} align={'center'}>
         <Box>
           <Text
             transition={'all .3s ease'}
             _groupHover={{ color: 'pink.400' }}
-            fontWeight={500}>
+            fontWeight={500}
+          >
             {label}
           </Text>
           <Text fontSize={'sm'}>{subLabel}</Text>
@@ -251,30 +257,31 @@ const DesktopSubNav = ({ label, href, subLabel }) => {
           _groupHover={{ opacity: '100%', transform: 'translateX(0)' }}
           justify={'flex-end'}
           align={'center'}
-          flex={1}>
+          flex={1}
+        >
           <Icon color={'pink.400'} w={5} h={5} as={ChevronRightIcon} />
         </Flex>
       </Stack>
     </Link>
-  );
-};
-
+  )
+}
 
 const MobileNav = () => {
   return (
     <Stack
       bg={useColorModeValue('white', 'gray.800')}
       p={4}
-      display={{ md: 'none' }}>
+      display={{ md: 'none' }}
+    >
       {NAV_ITEMS.map((navItem) => (
         <MobileNavItem key={navItem.label} {...navItem} />
       ))}
     </Stack>
-  );
-};
+  )
+}
 
 const MobileNavItem = ({ label, children, href }) => {
-  const { isOpen, onToggle } = useDisclosure();
+  const { isOpen, onToggle } = useDisclosure()
 
   return (
     <Stack spacing={4} onClick={children && onToggle}>
@@ -285,11 +292,13 @@ const MobileNavItem = ({ label, children, href }) => {
         justify={'space-between'}
         align={'center'}
         _hover={{
-          textDecoration: 'none',
-        }}>
+          textDecoration: 'none'
+        }}
+      >
         <Text
           fontWeight={600}
-          color={useColorModeValue('gray.600', 'gray.200')}>
+          color={useColorModeValue('gray.600', 'gray.200')}
+        >
           {label}
         </Text>
         {children && (
@@ -310,15 +319,16 @@ const MobileNavItem = ({ label, children, href }) => {
           borderLeft={1}
           borderStyle={'solid'}
           borderColor={useColorModeValue('gray.200', 'gray.700')}
-          align={'start'}>
+          align={'start'}
+        >
           {children &&
             children.map((child) => (
-              <Link key={child.label} py={2} href={child.href}>
+              <LinkRD key={child.label} py={2} to={child.href}>
                 {child.label}
-              </Link>
+              </LinkRD>
             ))}
         </Stack>
       </Collapse>
     </Stack>
-  );
-};
+  )
+}

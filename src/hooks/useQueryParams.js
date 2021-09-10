@@ -1,39 +1,34 @@
 import React, { useEffect, useState } from 'react'
 
 export default function useQueryParams() {
-//   const [params, setParams] = useState([])
-
-
-//   useEffect(() => {
-//     getParams()
-//   }, [])
+  const [parameters, setParameters] = useState(
+    Object.fromEntries(new URLSearchParams(window.location.search).entries())
+  )
 
   const getParams = () => {
     const urlSearchParams = new URLSearchParams(window.location.search)
     const params = Object.fromEntries(urlSearchParams.entries())
-    // setParams(params)
+    setParameters(params)
     return params
   }
 
-  const setParams = (key, value) => {
+  const addParam = (key, value) => {
     const urlSearchParams = new URLSearchParams(window.location.search)
     urlSearchParams.append(key, value)
-    // const entries = urlSearchParams.entries()
-    // for(let key of entries) {
-    //     console.log('key', key[0])
-    //     console.log('value', key[1])
-    // }
-    // window.location.search = urlSearchParams //this triggers a refresh
-    const { pathname, origin } = window.location 
-    const currentPath = `${origin}${pathname}`
-    const newPath = `${currentPath}?${urlSearchParams}`
-    // console.log('pathname', pathname)
-    // console.log('origin', origin)
-    // console.log('currentPath', currentPath)
-    // console.log('newPath', newPath)
-    window.history.replaceState({}, '', `${newPath}`)
-    // return urlSearchParams
+    setParameters(Object.fromEntries(urlSearchParams.entries()))
+    window.history.replaceState(null, null, '?' + urlSearchParams.toString())
   }
 
-  return { getParams, setParams }
+  // paramsType = { key: string, value: string } []
+  const setParams = (params) => {
+    const urlSearchParams = new URLSearchParams(window.location.search)
+    for (let i = 0; i < params.length; i++) {
+      const { key, value } = params[i]
+      urlSearchParams.append(key, value)
+    }
+    setParameters(Object.fromEntries(urlSearchParams.entries()))
+    window.history.replaceState(null, null, '?' + urlSearchParams.toString())
+  }
+
+  return { parameters, getParams, addParam, setParams }
 }
