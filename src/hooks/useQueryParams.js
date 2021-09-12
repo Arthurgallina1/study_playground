@@ -23,7 +23,7 @@ export default function useQueryParams() {
     const urlSearchParams = new URLSearchParams(search)
     urlSearchParams.append(key, value)
     setParameters(Object.fromEntries(urlSearchParams.entries()))
-    window.history.replaceState(null, null, '?' + urlSearchParams.toString())
+    // window.history.replaceState(null, null, '?' + urlSearchParams.toString())
     push(`?${urlSearchParams.toString()}`)
   }
 
@@ -35,7 +35,7 @@ export default function useQueryParams() {
       urlSearchParams.append(key, value)
     }
     setParameters(Object.fromEntries(urlSearchParams.entries()))
-    window.history.replaceState(null, null, '?' + urlSearchParams.toString())
+    replace(`?${urlSearchParams.toString()}`)
   }
 
   return { parameters, getParams, addParam, setParams }

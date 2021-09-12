@@ -10,6 +10,7 @@ import { useSpring, animated, useTransition } from 'react-spring'
 
 import DynamicForm from '../components/DynamicForm'
 import Home from '../pages/Home'
+import Perfo from '../pages/Perfo'
 
 const animation = {
   from: {
@@ -34,34 +35,20 @@ export default function App() {
   const location = useLocation()
   const transitions = useTransition(location, animation)
 
-  // return transitions((props, item) => (
-  //  <animated.div style={{...props, width: '100%'}}>
-  return (
-    <Switch location={location}>
-      <Route path="/about">
-        <About />
-      </Route>
-      <Route path="/users">
-        <Home />
-      </Route>
-      <Route path="/dynamicform">
-        <DynamicForm />
-      </Route>
-    </Switch>
-  )
-  //  </animated.div>
-  //  )
-  // );
-}
-
-// function Home() {
-//   return <div style={{ background: 'blue', padding: '10px', height: '90vh'}}>Home</div>;
-// }
-
-function About() {
-  return (
-    <div style={{ background: 'yellow', padding: '10px', height: '90vh' }}>
-      About
-    </div>
-  )
+  return transitions((props, item) => (
+    <animated.div style={{...props, width: '100%'}}>
+      <Switch location={location}>
+        <Route path="/about">
+          <Perfo />
+        </Route>
+        <Route path="/users">
+          <Home />
+        </Route>
+        <Route path="/dynamicform">
+          <DynamicForm />
+        </Route>
+      </Switch>
+    </animated.div>
+   )
+  );
 }
