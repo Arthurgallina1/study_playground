@@ -1,12 +1,14 @@
-import { Button } from '@chakra-ui/button'
-import { Box, Grid } from '@chakra-ui/layout'
 import React, { useEffect } from 'react'
-import { useLocation } from '../hooks/useLocation'
+import { Button, Switch } from '@chakra-ui/react'
+import { Box, Grid } from '@chakra-ui/layout'
 import useQueryParams from '../hooks/useQueryParams'
+import { useLocation } from 'react-recipes'
+
 
 export default function Home() {
   const { parameters, getParams, addParam, setParams } = useQueryParams()
-  const { push, replace } = useLocation()
+  const [push, replace] = useLocation()
+
 
   return (
     <div style={{ background: 'red', padding: '10px', height: '90vh' }}>
@@ -43,6 +45,7 @@ export default function Home() {
             <span>{i[1]} </span>
           </div>
         })}</Box>
+
       </Grid>
     </div>
   )

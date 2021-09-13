@@ -70,11 +70,15 @@ const Filho2 = ({ counter }) => {
 }
 
 const Filho3 = ({ isThemeDark }) => {
-  const themed = {
+  const themed = useMemo(() => ({
     bg: isThemeDark ? '#333010' : '#F3F3F3',
     color: isThemeDark ? '#F3F3F3' : '#333010'
-  }
-  console.log('rerender Filho 3 <<>>')
+  }), [isThemeDark])
+
+  React.useEffect(() => {
+    console.log('thema mudou', themed)
+  }, [themed])
+
   return (
     <Box px="36" my="5" py="12" borderRadius="md" {...themed}>
       teste!

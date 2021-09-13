@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import { useLocation } from './useLocation'
+// import { useLocation } from './useLocation'
+import { useLocation } from 'react-recipes'
 
 
 export default function useQueryParams() {
-  const { push, replace, pathname, search } = useLocation()
+  const [push, replace, pathname, search] = useLocation()
+  console.log('search', search)
   const [parameters, setParameters] = useState(
     Object.fromEntries(new URLSearchParams(search).entries())
   )
