@@ -4,8 +4,8 @@ import { useLocation } from 'react-recipes'
 
 
 export default function useQueryParams() {
-  const [push, replace, pathname, search] = useLocation()
-  console.log('search', search)
+  const { push, replace, pathname, search } = useLocation()
+  // console.log('search', search)
   const [parameters, setParameters] = useState(
     Object.fromEntries(new URLSearchParams(search).entries())
   )
