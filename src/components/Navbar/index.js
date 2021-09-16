@@ -43,51 +43,21 @@ import {
 import { Link as LinkRD } from 'react-router-dom'
 
 const NAV_ITEMS = [
-  // {
-  //   label: 'Home',
-  //   children: [
-  //     {
-  //       label: 'Explore Design Work',
-  //       subLabel: 'Trending Design to inspire you',
-  //       href: '#',
-  //     },
-  //     {
-  //       label: 'New & Noteworthy',
-  //       subLabel: 'Up-and-coming Designers',
-  //       href: '#',
-  //     },
-  //   ],
-  // },
-  // {
-  //   label: 'About',
-  //   children: [
-  //     {
-  //       label: 'Job Board',
-  //       subLabel: 'Find your dream design job',
-  //       href: '#',
-  //     },
-  //     {
-  //       label: 'Freelance Projects',
-  //       subLabel: 'An exclusive list for contract work',
-  //       href: '#',
-  //     },
-  //   ],
-  // },
   {
     label: 'useQuery',
     href: '/'
   },
   {
-    label: 'About',
+    label: 'CB/MEMO PERFOMANCE',
     href: '/about'
   },
   {
-    label: 'Users',
+    label: 'useQuery',
     href: '/users'
   },
   {
-    label: 'Hire Designers',
-    href: '#'
+    label: 'SWR',
+    href: '/swr'
   }
 ]
 
@@ -274,61 +244,65 @@ const MobileNav = () => {
       display={{ md: 'none' }}
     >
       {NAV_ITEMS.map((navItem) => (
-        <MobileNavItem key={navItem.label} {...navItem} />
+        <li>
+          <LinkRD to={navItem.href}>
+            {navItem.label}
+          </LinkRD>
+        </li>
       ))}
     </Stack>
   )
 }
 
-const MobileNavItem = ({ label, children, href }) => {
-  const { isOpen, onToggle } = useDisclosure()
+// const MobileNavItem = ({ label, children, href }) => {
+//   const { isOpen, onToggle } = useDisclosure()
 
-  return (
-    <Stack spacing={4} onClick={children && onToggle}>
-      <Flex
-        py={2}
-        as={Link}
-        href={href ?? '#'}
-        justify={'space-between'}
-        align={'center'}
-        _hover={{
-          textDecoration: 'none'
-        }}
-      >
-        <Text
-          fontWeight={600}
-          color={useColorModeValue('gray.600', 'gray.200')}
-        >
-          {label}
-        </Text>
-        {children && (
-          <Icon
-            as={ChevronDownIcon}
-            transition={'all .25s ease-in-out'}
-            transform={isOpen ? 'rotate(180deg)' : ''}
-            w={6}
-            h={6}
-          />
-        )}
-      </Flex>
+//   return (
+//     <Stack spacing={4} onClick={children && onToggle}>
+//       <Flex
+//         py={2}
+//         as={Link}
+//         href={href ?? '#'}
+//         justify={'space-between'}
+//         align={'center'}
+//         _hover={{
+//           textDecoration: 'none'
+//         }}
+//       >
+//         <Text
+//           fontWeight={600}
+//           color={useColorModeValue('gray.600', 'gray.200')}
+//         >
+//           {label}
+//         </Text>
+//         {children && (
+//           <Icon
+//             as={ChevronDownIcon}
+//             transition={'all .25s ease-in-out'}
+//             transform={isOpen ? 'rotate(180deg)' : ''}
+//             w={6}
+//             h={6}
+//           />
+//         )}
+//       </Flex>
 
-      <Collapse in={isOpen} animateOpacity style={{ marginTop: '0!important' }}>
-        <Stack
-          mt={2}
-          pl={4}
-          borderLeft={1}
-          borderStyle={'solid'}
-          borderColor={useColorModeValue('gray.200', 'gray.700')}
-          align={'start'}
-        >
-          {children &&
-            children.map((child) => (
-              <LinkRD key={child.label} py={2} to={child.href}>
-                {child.label}
-              </LinkRD>
-            ))}
-        </Stack>
-      </Collapse>
-    </Stack>
-  )
-}
+//       <Collapse in={isOpen} animateOpacity style={{ marginTop: '0!important' }}>
+//         <Stack
+//           mt={2}
+//           pl={4}
+//           borderLeft={1}
+//           borderStyle={'solid'}
+//           borderColor={useColorModeValue('gray.200', 'gray.700')}
+//           align={'start'}
+//         >
+//           {children &&
+//             children.map((child) => (
+//               <LinkRD key={child.label} py={2} to={child.href}>
+//                 {child.label}
+//               </LinkRD>
+//             ))}
+//         </Stack>
+//       </Collapse>
+//     </Stack>
+//   )
+// }
