@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 // import { useLocation } from './useLocation'
 import { useLocation } from 'react-recipes'
-
 
 export default function useQueryParams() {
   const { push, replace, pathname, search } = useLocation()
@@ -10,16 +9,16 @@ export default function useQueryParams() {
     Object.fromEntries(new URLSearchParams(search).entries())
   )
 
-  useEffect(() => {
-    getParams()
-  }, [search])
-
   const getParams = () => {
     const urlSearchParams = new URLSearchParams(search)
     const params = Object.fromEntries(urlSearchParams.entries())
     setParameters(params)
     return params
   }
+
+  useEffect(() => {
+    getParams()
+  }, [search])
 
   const addParam = (key, value) => {
     const urlSearchParams = new URLSearchParams(search)
@@ -31,14 +30,51 @@ export default function useQueryParams() {
 
   // paramsType = { key: string, value: string } []
   const setParams = (params) => {
-    const urlSearchParams = new URLSearchParams(search)
-    for (let i = 0; i < params.length; i++) {
-      const { key, value } = params[i]
-      urlSearchParams.append(key, value)
-    }
-    setParameters(Object.fromEntries(urlSearchParams.entries()))
-    replace(`?${urlSearchParams.toString()}`)
-  }
+    const urlSearchParams = new URLSearchParams(search);
+    params.forEach(({ key, value }) => {
+      urlSearchParams.append(key, value);
+    });
+    replace(`?${urlSearchParams.toString()}`);
+  };
+
 
   return { parameters, getParams, addParam, setParams }
 }
+
+
+
+// export default function useQueryParams() {
+//   const {
+//     replace, search,
+//   } = useLocation();
+
+//   const getParams = () => {
+//     const urlSearchParams = new URLSearchParams(search);
+//     const params = Object.fromEntries(urlSearchParams.entries());
+//     return params;
+//   };
+
+//   const setParams = (params) => {
+//     console.log(params);
+//     const urlSearchParams = new URLSearchParams(params);
+//     replace(`?${urlSearchParams.toString()}`);
+
+//     console.log(urlSearchParams.toString());
+//     // urlSearchParams.forEach((item) => console.log(item));
+//     // const urlSearchParams = new URLSearchParams();
+//     // Object.entries(params).forEach(([key, value]) => {
+//     //   console.log(key, value);
+//     //   urlSearchParams.append(key, value);
+//     // });
+//     // replace(`?${urlSearchParams.toString()}`);
+//   };
+
+//   useEffect(() => {
+//     getParams();
+//   }, [search]);
+
+//   return {
+//     getParams, setParams,
+//   };
+// }
+

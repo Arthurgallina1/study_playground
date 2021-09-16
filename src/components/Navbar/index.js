@@ -74,7 +74,7 @@ const NAV_ITEMS = [
   //   ],
   // },
   {
-    label: 'Home',
+    label: 'useQuery',
     href: '/'
   },
   {
@@ -181,7 +181,7 @@ const DesktopNav = () => {
   return (
     <Stack direction={'row'} spacing={4}>
       <li>
-        <LinkRD to="/users">Home</LinkRD>
+        <LinkRD to="/users">useQuery</LinkRD>
       </li>
       <li>
         <LinkRD to="/dynamicform">Dynamic Form</LinkRD>
