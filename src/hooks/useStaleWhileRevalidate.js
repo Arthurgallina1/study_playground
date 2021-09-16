@@ -8,7 +8,8 @@ export default function useStaleWhileRevalidate(url, defaultValue = []) {
   const [loading, setLoading] = useState(false)
 
   useEffect(() => {
-      const cacheID = url
+    console.log('got from cache')
+    const cacheID = url
     setLoading(true)
     if (CACHE[cacheID] !== undefined) {
       setData(CACHE[cacheID])
