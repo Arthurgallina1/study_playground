@@ -16,28 +16,34 @@ function fetchMock(url, suffix = '') {
   )
 }
 
-function TestComponent({ url }) {
-  const [data, isLoading] = useStaleWhileRevalidate(url, { data: '' })
-  if (isLoading) {
-    return <div>loading</div>
-  }
-  return <div>{data.data}</div>
-}
+
+beforeAll(() => {
+  global.fetch = jest.fn().mockImplementation((url) => fetchMock(url))
+})
+
+afterAll(() => {
+  global.fetch.mockClear()
+  delete global.fetch
+})
 
 describe('useStaleWhileRevalidate', () => {
-  beforeAll(() => {
-    jest.spyOn(global, 'fetch').mockImplementation(fetchMock)
-  })
-  afterAll(() => {
-    global.fetch.mockClear()
-  })
+  it('should s', async () => {
+      const res = await fetchMock('url1')
+      console.log('test -> ', res) // { json: [Function: json] }
+      console.log('test -> res.json() ->', await res.json())
 
-  it('should', () => {
     const defaultValue = { data: '' }
-    const { result } = renderHook(
+    const initialProps = { url: 'url1' }
+    const { result, waitForNextUpdate } = renderHook(
       ({ url }) => useStaleWhileRevalidate(url, defaultValue),
-      { initialProps: { url: 'url1 ' } }
+      { initialProps: { url: 'url1' } }
     )
-    console.log(result.current)
+
+    expect(result.current.loading).toEqual(true)
+    expect(result.current.data).toEqual(defaultValue)
+
+    await waitForNextUpdate(() => {
+      expect(result.current.data).toEqual(initialProps.url)
+    })
   })
 })
