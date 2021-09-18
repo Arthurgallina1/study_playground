@@ -58,6 +58,10 @@ const NAV_ITEMS = [
   {
     label: 'SWR',
     href: '/swr'
+  },
+  {
+    label: 'Portal',
+    href: 'portal'
   }
 ]
 
@@ -150,15 +154,12 @@ const DesktopNav = () => {
 
   return (
     <Stack direction={'row'} spacing={4}>
+      {NAV_ITEMS.map((item) => (
       <li>
-        <LinkRD to="/users">useQuery</LinkRD>
+        <LinkRD to={item.href}>{item.label}</LinkRD>
       </li>
-      <li>
-        <LinkRD to="/dynamicform">Dynamic Form</LinkRD>
-      </li>
-      <li>
-        <LinkRD to="/about">About</LinkRD>
-      </li>
+
+      ))}
       {/* {NAV_ITEMS.map((navItem) => (
         <Box key={navItem.label}>
           <Popover trigger={'hover'} placement={'bottom-start'}>

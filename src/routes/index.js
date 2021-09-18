@@ -11,6 +11,7 @@ import { useSpring, animated, useTransition } from 'react-spring'
 import DynamicForm from '../components/DynamicForm'
 import Home from '../pages/Home'
 import Perfo from '../pages/Perfo'
+import Portal from '../pages/Portal'
 import SWR from '../pages/SWR'
 
 const animation = {
@@ -50,6 +51,9 @@ export default function App() {
         </Route>
         <Route path="/swr">
           <SWR />
+        </Route>
+        <Route path="/portal">
+          <Portal />
         </Route>
       </Switch>
     </animated.div>
