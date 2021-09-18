@@ -11,24 +11,11 @@ export default function Portal() {
     setIsOpen(false)
   }
   return (
-    <div>
+    <Box maxH={360} backgroundColor="black">
+        <Box h={200}></Box>
+        <Box h={200}></Box>
       <Box
-        width={720}
-        h={200}
-        overflow="hidden"
-        backgroundColor="tomato"
-        position="relative"
-      >123</Box>
-
-      <Box
-        width={720}
-        h={200}
-        overflow="hidden"
-        backgroundColor="tomato"
-        position="relative"
-      >345</Box>
-
-      <Box
+      
         width={720}
         h={200}
         overflow="hidden"
@@ -47,15 +34,16 @@ export default function Portal() {
           Heading
         </Heading>
       </Modal>
-    </div>
+    </Box>
   )
 }
 
 const Tooltip = ({ isOpen }) => {
   if (!isOpen) return null
 
-  return reactDom.createPortal(
-    <Box
+//   return 
+//   reactDom.createPortal(
+    return <Box
       maxW={240}
       maxH={240}
       backgroundColor="white"
@@ -76,9 +64,9 @@ const Tooltip = ({ isOpen }) => {
           deserunt incidunt.
         </span>
       </Box>
-    </Box>,
-    document.getElementById('portal')
-  )
+    </Box>
+    // document.getElementById('portal')
+//   )
 }
 
 const Modal = ({ open, children, onClose }) => {
