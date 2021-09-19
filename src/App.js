@@ -1,20 +1,21 @@
 import Router from './routes/index'
-import {
-  BrowserRouter,
-} from "react-router-dom";
-import NavBar from './components/Navbar';
-import { ChakraProvider } from "@chakra-ui/react"
+import { BrowserRouter } from 'react-router-dom'
+import NavBar from './components/Navbar'
+import { ChakraProvider } from '@chakra-ui/react'
 import './index.css'
+import { ModalProvider } from './context/ModalContext'
 
 function App() {
   return (
-    <ChakraProvider>
-      <BrowserRouter>
-        <NavBar />
-        <Router />
-      </BrowserRouter>
-    </ChakraProvider>
-  );
+    <ModalProvider>
+      <ChakraProvider>
+        <BrowserRouter>
+          <NavBar />
+          <Router />
+        </BrowserRouter>
+      </ChakraProvider>
+    </ModalProvider>
+  )
 }
 
-export default App;
+export default App

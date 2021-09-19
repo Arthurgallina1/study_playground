@@ -1,16 +1,30 @@
 import React from 'react'
-import useModal, { Modal } from '../hooks/useModal'
+import { ModalContext } from '../context/ModalContext';
 
 export default function UseModal() {
-  const [modalOpen, setModalOpen, toggleModal] = useModal()
-
-  //   console.log(Modal, onClose, oi)
   return (
     <div>
-      <button onClick={toggleModal}>Show</button>
-      <Modal open={modalOpen} onClose={() => setModalOpen(false)}>
-        <h3>this is a test item bla bla</h3>
-      </Modal>
+      <Component />
     </div>
   )
 }
+
+
+const Component = () => {
+  let { handleModal } = React.useContext(ModalContext);
+
+  return (
+    <>
+      <p>
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cumque quidem
+        asperiores?
+      </p>
+      <button
+        className="mt-6 rounded  bg-purple-700 text-purple-100 px-5 h-12"
+        onClick={() => handleModal("This is component modal content")}
+      >
+        open this modal!
+      </button>
+    </>
+  );
+};
