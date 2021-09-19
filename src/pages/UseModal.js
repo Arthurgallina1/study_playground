@@ -1,9 +1,24 @@
 import React from 'react'
 import { ModalContext } from '../context/ModalContext'
+import usePersistingState from '../hooks/usePersistingState'
 
 export default function UseModalPage() {
+  const [tk, setTk] = usePersistingState('9000', 'tk')
+
+  const [chess, setChess] = usePersistingState('rafael', 'chess')
+
+  console.log('tk', tk)
+
   return (
     <div>
+      <p>
+        {tk}
+        <button onClick={() => setTk(tk + 100)}>change tk</button>
+      </p>
+      <p>
+        {chess}
+        <button onClick={() => setChess('123')}>change tk</button>
+      </p>
       <div style={{ marginTop: 30 }}>
         <Component />
       </div>
@@ -18,19 +33,18 @@ export default function UseModalPage() {
 }
 
 const Component = () => {
-  let { handleModal } = React.useContext(ModalContext)
+  let { handleModal, setOptions } = React.useContext(ModalContext)
 
   return (
     <>
-      <p>
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cumque quidem
-        asperiores?
-      </p>
       <button
         className='mt-6 rounded  bg-purple-700 text-purple-100 px-5 h-12'
-        onClick={() => handleModal('I9HSAUIDJAS')}
+        onClick={() => {
+          handleModal('I9HSAUIDJAS')
+          setOptions({ closeButton: true })
+        }}
       >
-        open this modal!
+        Open modal with close
       </button>
     </>
   )
@@ -59,7 +73,7 @@ const Component2 = () => {
       className='mt-6 rounded  bg-purple-700 text-purple-100 px-5 h-12'
       onClick={handleClick}
     >
-      open this modal!
+      Open modal with Manual timeout
     </button>
   )
 }
@@ -72,7 +86,6 @@ const Component3 = () => {
     // setHasClose(false)
     setOptions({ closeButton: false, shouldCloseAfter: 2000 })
     handleModal('will close in 2000ms')
-
   }
 
   return (
@@ -80,7 +93,7 @@ const Component3 = () => {
       className='mt-6 rounded  bg-purple-700 text-purple-100 px-5 h-12'
       onClick={handleClick}
     >
-      open this modal!
+      Open modal with auto timeout
     </button>
   )
 }

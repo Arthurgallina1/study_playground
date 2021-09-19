@@ -16,7 +16,6 @@ export const Modal = () => {
       }, options.shouldCloseAfter)
   }
 
-  console.log('options', options)
   return reactDom.createPortal(
     <>
       <div style={OVERLAY_STYLES} />
