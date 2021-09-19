@@ -1,20 +1,28 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import reactDom from 'react-dom'
 import { Button } from '@chakra-ui/button'
 import { Flex } from '@chakra-ui/layout'
 import { ModalContext } from '../../context/ModalContext'
 
 export const Modal = () => {
+  const { modalContent, closeModal, modal, options } =
+    useContext(ModalContext)
 
-const  { modalContent, handleModal, modal }= useContext(ModalContext)
   if (!modal) return null
+
+  if(options?.shouldCloseAfter) {
+      setTimeout(() => {
+        closeModal()
+      }, options.shouldCloseAfter)
+  }
+
+  console.log('options', options)
   return reactDom.createPortal(
     <>
       <div style={OVERLAY_STYLES} />
-      <Button onClick={() => handleModal()}>Open Modal</Button>
       <Flex direction='column' backgroundColor='blue.500' style={modalSyles}>
-          {modalContent}
-        <Button onClick={() => handleModal()}>Close</Button>
+        {modalContent}
+        {options.closeButton && <Button onClick={closeModal}>Close</Button>}
       </Flex>
     </>,
     document.getElementById('portal'),

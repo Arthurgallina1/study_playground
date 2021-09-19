@@ -1,16 +1,43 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+
+const INITIAL_OPTIONS = {
+  closeButton: true,
+}
 
 export default function useModal() {
-  let [modal, setModal] = React.useState(false)
-  let [modalContent, setModalContent] = React.useState("I'm the Modal Content")
+  const [options, setOptions] = useState()
+  const [modal, setModal] = useState(false)
+  const [modalContent, setModalContent] = useState("I'm the Modal Content")
 
-  let handleModal = (content = false) => {
-      console.log('modal', modal)
+//   useEffect(() => {
+//       if (!options) {
+//         setOptions(INITIAL_OPTIONS)
+//           console.log('oiiii')
+//     }
+//   }, [modal, setModalContent])
+
+  const closeModal = () => {
+    setModal(false)
+  }
+
+  const changeModalContent = (content) => {
+    setModalContent(content)
+  }
+
+  const handleModal = (content = false) => {
     setModal(!modal)
     if (content) {
       setModalContent(content)
     }
   }
 
-  return { modal, handleModal, modalContent }
+  return {
+    modal,
+    handleModal,
+    modalContent,
+    closeModal,
+    changeModalContent,
+    options,
+    setOptions,
+  }
 }
