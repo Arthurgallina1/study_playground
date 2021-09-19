@@ -62,6 +62,10 @@ const NAV_ITEMS = [
   {
     label: 'Portal',
     href: 'portal'
+  },
+  {
+    label: 'useModal',
+    href: 'usemodal'
   }
 ]
 

@@ -13,6 +13,7 @@ import Home from '../pages/Home'
 import Perfo from '../pages/Perfo'
 import Portal from '../pages/Portal'
 import SWR from '../pages/SWR'
+import UseModal from '../pages/UseModal'
 
 const animation = {
   from: {
@@ -54,6 +55,9 @@ export default function App() {
         </Route>
         <Route path="/portal">
           <Portal />
+        </Route>
+        <Route path="/usemodal">
+          <UseModal />
         </Route>
       </Switch>
     </animated.div>
