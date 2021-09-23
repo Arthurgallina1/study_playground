@@ -2,7 +2,7 @@ import faker from 'faker'
 
 // this wrapper simulates delay on call + adding a user to revalidate
 export default async function apiFetch(...args) {
-  await delay(Math.ceil(400 + Math.random() * 300))
+  // await delay(Math.ceil(400 + Math.random() * 300))
   //   const res = await fetchMock('url1') mesma coisa
   const res = await fetch(...args)
   console.log('api ->', res) // [Function: fetchMock] queria -> { json: [Function: json] }

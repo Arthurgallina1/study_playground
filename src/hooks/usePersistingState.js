@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 
 export default function usePersistingState(defaultValue, key) {
+    console.log('key', key)
   const [state, setState] = useState(() => {
     const persistedValue = window.localStorage.getItem(key)
     return persistedValue !== null ? JSON.parse(persistedValue) : defaultValue

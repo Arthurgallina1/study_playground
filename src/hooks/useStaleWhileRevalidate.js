@@ -8,18 +8,22 @@ export default function useStaleWhileRevalidate(url, defaultValue = []) {
   const [loading, setLoading] = useState(false)
 
   useEffect(() => {
-    console.log('got from cache')
     const cacheID = url
     setLoading(true)
     if (CACHE[cacheID] !== undefined) {
       setData(CACHE[cacheID])
       setLoading(false)
     }
-    apiFetch(url).then((json) => {
+    fetch(url).then((res) =>  res.json().then(json => {
       CACHE[cacheID] = json.data
       setData(json.data)
       setLoading(false)
-    })
+    }))
+    // apiFetch(url).then((json) => {
+    //   CACHE[cacheID] = json.data
+    //   setData(json.data)
+    //   setLoading(false)
+    // })
   }, [url])
 
   return { data, loading }
