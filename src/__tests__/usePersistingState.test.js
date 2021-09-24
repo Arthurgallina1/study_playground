@@ -35,4 +35,24 @@ describe('usePersistingState', () => {
     expect(localStorage.getItem).toHaveBeenCalled()
     expect(localStorage.setItem).toHaveBeenCalled()
   })
+
+  it('should get', async () => {
+    let initialvalue = 'tomanocusky'
+    const { result, rerender } = renderHook(() =>
+      usePersistingState(initialvalue, 'testKey'),
+    )
+
+    expect(result.current[0]).toBe(initialvalue)
+
+    initialvalue = 'chabusky'
+    rerender()
+
+    const [,,setZica] = result.current
+    act(() => {
+      setZica(initialvalue)
+    })
+
+    expect(result.current[0]).toBe('zica')
+   
+  })
 })

@@ -18,7 +18,12 @@ export default function usePersistingState(defaultValue, key) {
     window.localStorage.setItem(key, JSON.stringify(state))
   }, [key, state])
 
-  return [state, setState]
+
+  // mick
+
+  const setZica = () => { setState('zica') }
+
+  return [state, setState, setZica]
 }
 
 
