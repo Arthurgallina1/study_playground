@@ -13,10 +13,6 @@ describe('usePersistingState', () => {
     Object.defineProperty(window, 'localStorage', { value: localStorageMock })
   })
 
-  afterEach(() => {
-    Object.defineProperty(window, 'localStorage', { value: null })
-  })
-
   it('should set state with defaultValue and then with passed value', () => {
     const { result, waitForNextUpdate } = renderHook(() =>
       usePersistingState('initialValue', 'testKey'),
@@ -32,9 +28,10 @@ describe('usePersistingState', () => {
   })
 
   it('should set and get items from localStorage', async () => {
-    // const { result, waitForNextUpdate } = renderHook(() =>
-    //   usePersistingState('initialValue', 'testKey'),
-    // )
+    const { result, waitForNextUpdate } = renderHook(() =>
+      usePersistingState('newInitialValue', 'testKey'),
+    )
+    
     expect(localStorage.getItem).toHaveBeenCalled()
     expect(localStorage.setItem).toHaveBeenCalled()
   })
