@@ -66,6 +66,10 @@ const NAV_ITEMS = [
   {
     label: 'useModal',
     href: 'usemodal'
+  },
+  {
+    label: 'RQuery',
+    href: 'reactquery'
   }
 ]
 
