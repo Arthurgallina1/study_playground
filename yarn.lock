@@ -10190,8 +10190,10 @@ react-query@^3.34.0:
     broadcast-channel "^3.4.1"
     match-sorter "^6.0.2"
 
-"react-recipes@file:../react-recipes":
-  version "1.3.0"
+react-recipes@^1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/react-recipes/-/react-recipes-1.4.0.tgz#dc2be5556b304389a934b4146bfa24150efdedc8"
+  integrity sha512-NStiubbNW/1iIOnVE27mMxmr6Rjmq7nPeyDGF58okpXzMxieffCNza972NXxyXKwiayhmXzQP7dIeNX0eYufjg==
 
 react-refresh@^0.8.3:
   version "0.8.3"
